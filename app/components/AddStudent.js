@@ -50,8 +50,7 @@ class addStudent extends React.Component {
               <div className="col-xs-10">
                 <input className="form-control" type="text" value={this.state.inputValue} onChange={this.handleChange}/>
                 <div className='warning'>
-                  {this.state.inputLength ? (<div className="alert alert-warning"> No more than 16 characters</div>):(null)}
-                  {this.state.submit_empty? (<div className="alert alert-warning"> Playlist needs a name</div>):(null)}
+                  {this.state.submit_empty? (<div className="alert alert-warning"> Name Required</div>):(null)}
                 </div>
               </div>
             </div>

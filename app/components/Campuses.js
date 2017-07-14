@@ -40,5 +40,3 @@ const mapDispatch = dispatch =>  ({
 });
 
 export default withRouter(connect(mapProps, mapDispatch)(Campuses));
-
-// {`/campuses/${campus.id}`}

@@ -8,7 +8,7 @@ import Campuses from './components/Campuses';
 import Campus from './components/Campus';
 import {fetchStudentBody} from './reducers/students';
 import {fetchcampuses} from './reducers/campuses';
-import Root from './components/Root';
+
 
 class Routes extends Component {
 
@@ -21,7 +21,7 @@ class Routes extends Component {
       <Router>
         <Home>
           <Switch>
-            <Route exact path="/" component={Root}/>
+            <Route exact path="/" component={Campuses}/>
             <Route exact path="/campuses" component={Campuses}/>
             <Route exact path="/students" component ={Students}/>
             <Route path='addstudent' component ={AddStudent}/>
@@ -39,14 +39,7 @@ const mapDispatch = dispatch => ({
   fetchInitialData: () => {
     dispatch(fetchStudentBody());
     dispatch(fetchcampuses());
-    // what other data might we want to fetch on app load?
   }
 });
 
 export default connect(mapProps, mapDispatch)(Routes);
-
-// <Route path="/students/:id" component={Student}/> */
-// }
-//
-// {/* <Route path="/campuses/:id" compenent={Campus}/> */
-// }

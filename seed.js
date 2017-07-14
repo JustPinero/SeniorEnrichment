@@ -39,72 +39,72 @@ const students = [
     email: "mrpp@optimumonline.com",
     campus: campuses[3]
   }
-  // , {
-  //   firstName: 'Nathan',
-  //   lastName: 'Explosion',
-  //   email: "natex@dethklok.com",
-  //   campus: 1
-  // }, {
-  //   firstName: 'Yoda',
-  //   lastName: 'Gremlin',
-  //   email: "gizmo@jedi.gov",
-  //   campus: 2
-  // }, {
-  //   firstName: 'Santa',
-  //   lastName: 'Claus',
-  //   email: "kkringle@npole.com",
-  //   campus: 3
-  // }, {
-  //   firstName: 'Slim',
-  //   lastName: 'Biggins',
-  //   email: "bigslim@gmail",
-  //   campus: 3
-  // }, {
-  //   firstName: 'Jonas',
-  //   lastName: 'Venture',
-  //   email: "rustyv@venture.com",
-  //   campus: 4
-  // }, {
-  //   firstName: 'Leslie',
-  //   lastName: 'Knope',
-  //   email: "lknope@pawnee.com",
-  //   campus: 1
-  // }, {
-  //   firstName: 'Nikko',
-  //   lastName: 'Hallora',
-  //   email: "robocoplives@ocp.net",
-  //   campus: 2
-  // }, {
-  //   firstName: 'Touranga',
-  //   lastName: 'Leela',
-  //   email: "tleels@planex.com",
-  //   campus: 3
-  // }, {
-  //   firstName: 'Carmencita',
-  //   lastName: 'Ibañez',
-  //   email: "cIbañez@earth.net",
-  //   campus: 4
-  // }, {
-  //   firstName: 'Beatrix',
-  //   lastName: 'Kiddo',
-  //   email: "thebride@aol.com",
-  //   campus: 1
-  // }, {
-  //   firstName: 'Natalya',
-  //   lastName: 'Simonova',
-  //   email: "ninasimone@goldeneye.uk",
-  //   campus: 2
-  // }, {
-  //   firstName: 'Armitage',
-  //   lastName: 'Wintermute',
-  //   email: "nueromancer@razornet.com",
-  //   campus: 3
-  // }, {
-  //   firstName: 'John',
-  //   lastName: 'Decker',
-  //   email: "deck@shadow.net",
-  //   campus: 4
-  // }
+  , {
+    firstName: 'Nathan',
+    lastName: 'Explosion',
+    email: "natex@dethklok.com",
+    campus: 1
+  }, {
+    firstName: 'Yoda',
+    lastName: 'Gremlin',
+    email: "gizmo@jedi.gov",
+    campus: 2
+  }, {
+    firstName: 'Santa',
+    lastName: 'Claus',
+    email: "kkringle@npole.com",
+    campus: 3
+  }, {
+    firstName: 'Slim',
+    lastName: 'Biggins',
+    email: "bigslim@gmail",
+    campus: 3
+  }, {
+    firstName: 'Jonas',
+    lastName: 'Venture',
+    email: "rustyv@venture.com",
+    campus: 4
+  }, {
+    firstName: 'Leslie',
+    lastName: 'Knope',
+    email: "lknope@pawnee.com",
+    campus: 1
+  }, {
+    firstName: 'Nikko',
+    lastName: 'Hallora',
+    email: "robocoplives@ocp.net",
+    campus: 2
+  }, {
+    firstName: 'Touranga',
+    lastName: 'Leela',
+    email: "tleels@planex.com",
+    campus: 3
+  }, {
+    firstName: 'Carmencita',
+    lastName: 'Ibañez',
+    email: "cIbañez@earth.net",
+    campus: 4
+  }, {
+    firstName: 'Beatrix',
+    lastName: 'Kiddo',
+    email: "thebride@aol.com",
+    campus: 1
+  }, {
+    firstName: 'Natalya',
+    lastName: 'Simonova',
+    email: "ninasimone@goldeneye.uk",
+    campus: 2
+  }, {
+    firstName: 'Armitage',
+    lastName: 'Wintermute',
+    email: "nueromancer@razornet.com",
+    campus: 3
+  }, {
+    firstName: 'John',
+    lastName: 'Decker',
+    email: "deck@shadow.net",
+    campus: 4
+  }
 ];
 
 const seed = () =>
