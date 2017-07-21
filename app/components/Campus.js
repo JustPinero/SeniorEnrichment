@@ -1,47 +1,57 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {removecampus} from '../reducers/campuses';
 
 
 
-class Campus extends Component{
-
-
-render(){
+const Campus = ({allCampuses, allStudents,id})=>{
+  console.log("allcampuses", allCampuses);
+const currentCampus = allCampuses.find(campus=> campus.id === +id);
+    if(!currentCampus) return null;
 return(< div >
- <h3>{props.selectedCampus.name}</h3>
+ <h3>{currentCampus.name}</h3>
+ <NavLink to={`/campuses/${currentCampus.id}/update`}>
+   Update Campus Info
+ </NavLink>
  <table className='table'>
        <thead>
          <tr>
-           <th></th>
            <th>Name</th>
+           <th>Remove Student</th>
          </tr>
        </thead>
        <tbody>
-         {
-           props.students.filter(student=>student.campusId===props.selectedCampus.id).map(
-             student => (
+         {allStudents.map(
+             student => {
+               if(currentCampus.id===student.campusId){
+               return(
              <tr key={student.id}>
-               <td>
-                 <button className="btn btn-default btn-xs">
+               <NavLink to={`/students/${student.id}`}>
+               {student.fullName}
+              </NavLink>
+              <td>
+                 <button className="btn btn-default btn-xs" onClick = {()=>props.removecampus(student.id)}>
                    <span className="glyphicon glyphicon-play"></span>
                  </button>
                </td>
-               <td>{ student.fullName}</td>
              </tr>
-           ))
+           );};
+         })
          }
        </tbody>
      </table>
+     <NavLink to={`/campuses/${currentCampus.id}/addStudent`}>
+     Enroll New Student!!
+   </NavLink>
  </div>);
-}
-}
+};
     const mapProps = function (state) {
       return {
-        selectedCampus: state.campuses.campuses.filter(campus=>campus.id===this.props.match.params.id)[0],
+        campuses: state.campuses.campuses,
         students: state.students.students
       };
     };
+    const mapDispatch = {removecampus};
 
-
-    export default connect(mapProps)(Campus);
+    export default withRouter(connect(mapProps, mapDispatch)(Campus));

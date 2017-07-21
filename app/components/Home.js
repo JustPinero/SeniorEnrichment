@@ -1,10 +1,10 @@
 import React from 'react';
+import {NavLink, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-const Home = ({children}) => (
-  <div id="home" className="container-fluid">
-  <h1>WELCOME TO SPACE</h1>
-  {children}
+const Home = (props) => (
+  <div id="Home" className="container-fluid">
 </div>
 );
 
-export default Home;
+export default withRouter(connect()(Home));

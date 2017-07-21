@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Students = require('../../db/models/students');
 const Campuses = require('../../db/models/campuses');
+const Bluebird = require('bluebird');
 
 router.get('/', function (req, res, next) {
   Students.findAll()
@@ -26,14 +27,9 @@ router.get("/:id", function(req, res, next){
 });
 
 router.post("/", (req, res, next)=>{
-  if(req.body.content){
+  if(req.body){
     Students.create(req.body)
-    .then(function(student){
-      res.send({
-        message: 'Student registered',
-        student: student
-      });
-    })
+    .then(student=> res.status(201).json(student))
     .catch(next);
   } else{
     res.sendStatus(500);
@@ -51,13 +47,8 @@ router.put("/:id", (req, res, next)=>{
     return unupdatedStudent.update(req.body);
     }
   })
-  .catch(next)
-  .then(function(updatedStudent){
-    res.send({
-      message:'Updated successfully',
-      student: updatedStudent
-    });
-  });
+  .then(updatedStudent => res.status(201).json(updatedStudent))
+  .catch(next);
 });
 
 router.delete("/:id", (req, res)=>{

@@ -3,11 +3,7 @@ import axios from 'axios';
 // INITIAL STATE
 
 const initialState = {
-  students: [],
-  selectedStudent: {},
-  inputValue:"",
-  inputLength: false,
-  submit_empty: false
+  students: []
 };
 
 // ACTION TYPES
@@ -35,7 +31,7 @@ const remove = id => ({type:REMOVE_STUDENT, id});
  };
 
 export const enrollStudent = student => dispatch => {
-    axios.post('/api/students', students)
+    axios.post('/api/students', student)
     .then(res => res.data)
     .then(student => dispatch(enroll(student)))
     .catch(err => console.error("Unable to enroll student", err));

@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {enrollStudent} from '../reducers/students';
+import {updateStudent} from '../reducers/students';
 
-class addStudent extends React.Component {
+class UpdateStudent extends React.Component {
   constructor(props){
     super(props);
     this.state= {
+      studentId:'',
       firstName:'',
       lastName:'',
       email:'',
@@ -19,8 +20,13 @@ class addStudent extends React.Component {
   componentWillReceiveProps(nextProps){
     console.log(this);
     if(nextProps.campuses.length){
-     const currentCampus = nextProps.campuses.find(campus=>(campus.id=== +nextProps.match.params.id));
-     this.setState({campusName: currentCampus.name});
+     const currentStudent = nextProps.students.find(student=>(student.id=== +nextProps.match.params.id));
+     this.setState({
+       studentId: currentStudent.id,
+       firstName: currentStudent.firstName,
+       lastName: currentStudent.lastName,
+       email: currentStudent.email
+     });
    };
   }
   handleChange(event) {
@@ -35,17 +41,13 @@ class addStudent extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const newStudent = {
+    const preUpdatedStudent = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
       campusId: +this.props.match.params.id
     };
-  this.props.enrollStudent(newStudent);
-  this.setState({
-    firstName: '',
-    lastName:'',
-    email: ''});
+  this.props.updateStudent(+this.state.studentId, preUpdatedStudent);
 }
 
   render() {
@@ -65,7 +67,7 @@ class addStudent extends React.Component {
                 <label>Email Address</label>
                 <input type="text" value={this.state.email} onChange={this.handleChange} id="email-field" name="email" />
             </div>
-            <button type="submit">Enroll Student</button>
+            <button type="submit">Update Student Info</button>
         </form>
         </div>
     );
@@ -79,7 +81,7 @@ const mapstate = (state)=>{
   }
 );};
 
-const mapDispatch = {enrollStudent};
+const mapDispatch = {updateStudent};
 
 
-export default connect(mapstate, mapDispatch)(addStudent);
+export default withRouter(connect(mapstate, mapDispatch)(UpdateStudent));

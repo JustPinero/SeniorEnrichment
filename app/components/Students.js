@@ -1,41 +1,46 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {NavLink, withRouter} from 'react-router-dom';
 
-export function Students (props){
-  return(
+const Students = (props) => {
+  return (
     <table className='table'>
       <thead>
         <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Campus</th>
+          <th>Full Name</th>
           <th>Email</th>
+          <th>Campus</th>
         </tr>
       </thead>
       <tbody>
         {
           props.students.map(student => (
             <tr key={student.id}>
-              <td>{ student.fullName }</td>
               <td>
-                <span>{student.campusId}</span>
+                <button className="btn btn-default btn-xs">
+                  <span className="glyphicon glyphicon-play"></span>
+                </button>
               </td>
-              <td>{student.email}</td>
+              <NavLink to={`/students/${student.id}`}>
+              { student.fullName }
+            </NavLink>
+              <td>
+                <span>{student.email}</span>
+              </td>
+              <td>{student.campusId}</td>
             </tr>
           ))
         }
       </tbody>
     </table>
   );
-}
-
+};
 
 const mapProps = function (state) {
   return {
-    campuses: state.campuses.campuses,
-    students: state.students.students
+    students: state.students.students,
+    campuses: state.campuses.campuses
   };
 };
 
-export default connect(mapProps, null)(Students);
+export default withRouter(connect(mapProps)(Students));

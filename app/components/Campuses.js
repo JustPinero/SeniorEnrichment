@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from 'react-router-dom';
-import {select} from '../reducers/campuses';
+import {removecampus} from '../reducers/campuses';
 
 const Campuses = (props)=> {
+  console.log(props);
   return(
     <div>
         <h3>Campuses</h3>
         <div className="row">
+          <NavLink to={'/addcampus'} >Register New Campus</NavLink>
         {
           props.campuses.map(campus => (
             <div className="col-xs-4" key={ campus.id }>
@@ -17,7 +19,6 @@ const Campuses = (props)=> {
                   <h5>
                     <span>{ campus.name }</span>
                   </h5>
-                  <small> students</small>
                 </div>
               </NavLink>
             </div>
@@ -35,8 +36,4 @@ const mapProps = function (state) {
   };
 };
 
-const mapDispatch = dispatch =>  ({
-    selectCampus: (campus) => dispatch(select(campus))
-});
-
-export default withRouter(connect(mapProps, mapDispatch)(Campuses));
+export default withRouter(connect(mapProps)(Campuses));

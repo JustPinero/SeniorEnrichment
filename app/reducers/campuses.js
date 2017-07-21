@@ -3,8 +3,7 @@ import axios from 'axios';
 // INITIAL STATE
 
 const initialState = {
-  campuses: [],
-  selectedCampus: {}
+  campuses: []
 };
 
 // ACTION TYPES
@@ -13,7 +12,7 @@ const INITIALIZE_CAMPUSES = 'INITIALIZE_CAMPUS_BODY';
 const REGISTER_CAMPUS = 'REGISTER_CAMPUS';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const REMOVE_CAMPUS = 'REMOVE_CAMPUS';
-const SELECT_CAMPUS = 'SELECT_CAMPUS';
+
 
 // ACTION CREATORS
 
@@ -22,7 +21,7 @@ return ({ type: INITIALIZE_CAMPUSES, campuses});};
 const register = campus => ({type: REGISTER_CAMPUS, campus});
 const update = campus => ({type: UPDATE_CAMPUS, campus});
 const remove = id => ({type:REMOVE_CAMPUS, id});
-export const select = campus => ({type: SELECT_CAMPUS, campus});
+
 
 
 // THUNK CREATORS
@@ -36,9 +35,12 @@ export const select = campus => ({type: SELECT_CAMPUS, campus});
  };
 
 export const registercampus = campus => dispatch => {
-    axios.post('/api/campuses', campuses)
+    axios.post('/api/campuses', campus)
     .then(res => res.data)
-    .then(campus => dispatch(register(campus)))
+    .then(campus => {
+      console.log('registering campus', campus);
+      return(dispatch(register(campus)));
+    })
     .catch(err => console.error("Unable to register campus", err));
 };
 
@@ -71,9 +73,6 @@ export default function reducer (state= initialState, action) {
         break;
     case UPDATE_CAMPUS:
         newState.campuses= campuses.map(campus => (action.campus.id === campus.id ? action.campus : campus));
-        break;
-    case SELECT_CAMPUS:
-      newState.selectedCampus= action.campus;
         break;
     default:
       return state;
